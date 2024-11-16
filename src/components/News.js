@@ -22,11 +22,6 @@ const News = (props) => {
   const [totalResults, setTotalResults] = useState(0);
   const [hasMore, sethasMore] = useState(true);
 
-  useEffect(() => {
-    document.title = ` DailyBuzz - ${capitalizeFirstLetter(props.category)}`
-    updateNews();
-  }, []);
-
   const updateNews = async () => {
     props.setProgress(10);
     const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
@@ -47,6 +42,7 @@ const News = (props) => {
   };
 
   useEffect(() => {
+    document.title = ` DailyBuzz - ${capitalizeFirstLetter(props.category)}`
    updateNews();
   }, []);
 
@@ -59,11 +55,13 @@ const News = (props) => {
     if (!hasMore) return; // Prevent additional fetches if there's no more data
 
     setLoading(true);
+     const nextPage=page+1;
     const url = `https://newsapi.org/v2/top-headlines?country=${
       props.country
     }&category=${props.category}&apiKey=${props.apiKey}&page=${
-      page + 1
+       nextPage
     }&pageSize=${props.pageSize}`;
+
 
     try {
       const data = await fetch(url);
@@ -72,6 +70,7 @@ const News = (props) => {
       setArticles((prevState) =>
         prevState.concat(parsedData.articles)
       ) ;
+      setPage(nextPage);
         setTotalResults(parsedData.totalResults);
       setPage((prevPage) => prevPage.page + 1);
       setLoading(false);
