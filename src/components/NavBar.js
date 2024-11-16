@@ -8,7 +8,7 @@ export class NavBar extends Component {
         <nav className="navbar navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              NewsMonkey
+               DailyBuzz
             </Link>
             <button
               className="navbar-toggler"
@@ -32,18 +32,18 @@ export class NavBar extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/business">business </Link></li>
+                  <Link className="nav-link active" aria-current="page" to="/business">Business </Link></li>
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/entertainment">entertainment </Link></li>
+                  <Link className="nav-link active" aria-current="page" to="/entertainment">Entertainment </Link></li>
                 <li className="nav-item">
                  
-                  <Link className="nav-link active" aria-current="page" to="/health">health </Link></li>
+                  <Link className="nav-link active" aria-current="page" to="/health">Health </Link></li>
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/science">science </Link></li>
+                  <Link className="nav-link active" aria-current="page" to="/science">Science </Link></li>
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/sports">sports </Link></li>
+                  <Link className="nav-link active" aria-current="page" to="/sports">Sports </Link></li>
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/technology">technology</Link></li>
+                  <Link className="nav-link active" aria-current="page" to="/technology">Technology</Link></li>
               </ul>
             </div>
           </div>

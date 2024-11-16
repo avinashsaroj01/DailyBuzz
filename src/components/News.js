@@ -22,16 +22,21 @@ export default class News extends Component {
       loading: true,
       page: 1,
       totalResults:0,
-      hasMore:true
+      hasMore:true,
     };
-    document.title = ` NewsMonkey - ${this.capitalizeFirstLetter(this.props.category)}`
+    document.title = ` DailyBuzz - ${this.capitalizeFirstLetter(this.props.category)}`
   }
 
    updateNews= async()=>{
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=20ac60bb772d40a5bb572347e2beaeee&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+     this.props.setProgress(10);
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
+    this.props.setProgress(50);
+    
     let parsedData = await data.json();
+    this.props.setProgress(70); 
+
     console.log(parsedData);
     this.setState({
       articles: parsedData.articles,
@@ -39,6 +44,7 @@ export default class News extends Component {
       loading: false
       
     });
+    this.props.setProgress(100);
 
   }
   async componentDidMount() {
@@ -72,7 +78,7 @@ fetchMoreData = async () => {
 
   this.setState({ loading: true });
 
-  const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=20ac60bb772d40a5bb572347e2beaeee&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+  const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
   
   try {
     let data = await fetch(url);
@@ -93,12 +99,13 @@ fetchMoreData = async () => {
 
 
 
+
   render() {
     return (
            <>
            <div className="container" style={{display:'flex',justifyContent:'center',fontFamily:"Georgia",marginTop:'4rem'}}>
           <h1 className="my-3 text-center" >
-            NewsMonkey - Top {this.capitalizeFirstLetter(this.props.category)} Headlines
+            DailyBuzz - Top {this.capitalizeFirstLetter(this.props.category)} Headlines
           </h1>
 
            </div>
